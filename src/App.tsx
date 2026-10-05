@@ -21,7 +21,17 @@ export function App() {
     <div className = "product-grid">
       <div className = "product-card">
         <h3 className = "product-title">{listOfProducts[0].title}</h3>
-        <div className = "product-price">{listOfProducts[0].price} ₽</div>
+        <div className = "product-price">{listOfProducts[0].price} ₸</div>
+         <button className = "product-button">В корзину</button>
+      </div>
+      <div className = "product-card">
+        <h3 className = "product-title">{listOfProducts[1].title}</h3>
+        <div className = "product-price">{listOfProducts[1].price} ₸</div>
+         <button className = "product-button">В корзину</button>
+      </div>
+      <div className = "product-card">
+        <h3 className = "product-title">{listOfProducts[2].title}</h3>
+        <div className = "product-price">{listOfProducts[2].price} ₸</div>
          <button className = "product-button">В корзину</button>
       </div>
     </div>
