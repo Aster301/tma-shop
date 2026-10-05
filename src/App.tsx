@@ -34,6 +34,13 @@ export function App() {
         <div className = "product-price">{listOfProducts[2].price} ₸</div>
          <button className = "product-button">В корзину</button>
       </div>
+      <div className = "cart-bar">
+        <div className = "cart-info">
+          <span>В корзине: <strong id="cart-count">0</strong> шт.</span>
+          <span>Итого: <strong id="cart-total">0</strong> ₸</span>
+        </div>
+        <button className="cart-btn">Оформить заказ</button>
+      </div>
     </div>
   );
 }

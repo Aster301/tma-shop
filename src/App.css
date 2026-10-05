@@ -58,3 +58,43 @@
 .product-button:hover {
   background-color: #2980b9;
 }
+
+/* Плашка корзины (прилипающая снизу экрана) */
+.cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #414040;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+/* Информация о товарах */
+.cart-info {
+  display: flex;
+  gap: 30px;
+  font-size: 16px;
+  color: white;
+}
+
+/* Кнопка оформления */
+.cart-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cart-btn:hover {
+  background: #218838;
+}
