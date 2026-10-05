@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
 import './App.css';
-import { useLaunchParams, miniApp, initData, useSignal } from '@telegram-apps/sdk-react';
+import { useLaunchParams} from '@telegram-apps/sdk-react';
+import './App.css';
 
 export function App() {
   const lp = useLaunchParams();
-  const isDark = useSignal(miniApp.isDark);
-  
-  // Получаем пользователя через сигнал initData.user
-  const user = useSignal(initData.user);
+
+  const listOfProducts = [
+    {id:1, title: "Пицца", price: 3000}, 
+    {id:2, title: "Coca Cola", price: 500},
+    {id:3, title: "Пончик", price: 650}
+  ];
 
   useEffect(() => {
     // Проверяем, что приложение запущено внутри Telegram
@@ -15,9 +18,12 @@ export function App() {
   }, [lp]);
 
   return (
-    <div style={{ backgroundColor: isDark ? '#111' : '#fff', color: isDark ? '#fff' : '#000', minHeight: '100vh', padding: 16 }}>
-      <h1>Привет, Telegram Mini App!</h1>
-      <p>ID пользователя: {user?.id ?? 'не определен (разработка)'}</p>
+    <div className = "product-grid">
+      <div className = "product-card">
+        <h3 className = "product-title">{listOfProducts[0].title}</h3>
+        <div className = "product-price">{listOfProducts[0].price} ₽</div>
+         <button className = "product-button">В корзину</button>
+      </div>
     </div>
   );
 }
