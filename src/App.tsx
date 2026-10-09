@@ -1,6 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
+import { 
+  AppRoot, 
+  Button, 
+  Card, 
+  FixedLayout, 
+  LargeTitle, 
+  Text,
+  Subheadline
+} from '@telegram-apps/telegram-ui';
+
+// Обязательный импорт стилей библиотеки
+import '@telegram-apps/telegram-ui/dist/styles.css';
 
 // Расширяем глобальный объект window для работы с Telegram WebApp
 declare global {
@@ -102,34 +114,44 @@ export function App() {
   };
 
   return (
-    <div className="product-grid">
-      {listOfProducts.map((product) => (
-        <div key={product.id} className="product-card">
-          <h3 className="product-title">{product.title}</h3>
-          <div className="product-price">{product.price} ₸</div>
-          <button 
-            className="product-button"
-            onClick={() => addToCart(product)}
-          >
-            В корзину
-          </button>
-        </div>
-      ))}
+    <AppRoot style={{ padding: '16px', paddingBottom: '100px' }}>
+      <LargeTitle style={{ marginBottom: '16px' }}>Меню</LargeTitle>
 
-      <div className="cart-bar">
-        <div className="cart-info">
-          <span>В корзине: <strong>{cartCount}</strong> шт.</span>
-          <span>Итого: <strong>{cartTotal}</strong> ₸</span>
-        </div>
-        <button 
-          className="cart-btn"
-          onClick={handleCheckout}
-          disabled={cartCount === 0 || loading}
-        >
-          {loading ? 'Отправка...' : 'Оформить заказ'}
-        </button>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '12px' }}>
+        {listOfProducts.map((product) => (
+          <Card key={product.id} style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Text weight="1">{product.title}</Text>
+            <Subheadline level="2" style={{ color: 'var(--tgui--hint_color)' }}>
+              {product.price} ₸
+            </Subheadline>
+            <Button 
+              size="s" 
+              mode="bezeled"
+              onClick={() => addToCart(product)}
+            >
+              В корзину
+            </Button>
+          </Card>
+        ))}
       </div>
-    </div>
+
+      {/* Нижняя панель корзины с зафиксированным позиционированием */}
+      <FixedLayout vertical="bottom" style={{ padding: '16px', backgroundColor: 'var(--tgui--bg_color)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+          <Text weight="2">В корзине: {cartCount} шт.</Text>
+          <Text weight="1" style={{ fontSize: '18px' }}>{cartTotal} ₸</Text>
+        </div>
+        <Button 
+          size="l" 
+          stretched 
+          loading={loading}
+          disabled={cartCount === 0 || loading}
+          onClick={handleCheckout}
+        >
+          Оформить заказ
+        </Button>
+      </FixedLayout>
+    </AppRoot>
   );
 }
 

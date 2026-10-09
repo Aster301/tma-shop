@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { init as initSDK, miniApp, viewport } from '@telegram-apps/sdk-react';
 import App from './App';
+import '@telegram-apps/telegram-ui/dist/styles.css';
 
 try {
   initSDK();
